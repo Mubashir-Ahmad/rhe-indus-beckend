@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node beckend/app.js",
-    "dev": "node beckend/app.js"
+    "start": "node app.js",
+    "dev": "node app.js"
   },
   "keywords": [],
   "author": "",
