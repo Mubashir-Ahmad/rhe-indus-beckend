@@ -5,7 +5,7 @@ import sendEmail from "../utils/sendmail.js";
 import crypto from "crypto";
 import { errormiddle } from "../middleware/error.js";
 import cloudinary from "cloudinary";
-const DATABASE_URL ="mongodb+srv://mubbashirahmad:ahmad1122@the-indus.d06tuep.mongodb.net/the-indus?retryWrites=true&w=majority";
+const DATABASE_URL="mongodb+srv://mubashirahmad:ahmad1122@the-indus.vdcrrhs.mongodb.net/the-indus?retryWrites=true&w=majority";
 import { MongoClient, GridFSBucket, ObjectId } from "mongodb";
 class UserController {
   static adminuserregister = async (req, res) => {

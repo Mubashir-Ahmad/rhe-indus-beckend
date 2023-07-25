@@ -3,7 +3,7 @@ import ErrorHandler from "../utils/errorhandler.js";
 import ApiFeacture from "../utils/apifeacture.js";
 import cloudinary from "cloudinary";
 import categoryModel from "../model/categoryModel.js";
-const DATABASE_URL="mongodb+srv://mubbashirahmad:ahmad1122@the-indus.d06tuep.mongodb.net/the-indus?retryWrites=true&w=majority";
+const DATABASE_URL="mongodb+srv://mubashirahmad:ahmad1122@the-indus.vdcrrhs.mongodb.net/the-indus?retryWrites=true&w=majority";
 import { MongoClient, GridFSBucket, ObjectId } from "mongodb";
 import Grid from "gridfs-stream";
 import mongoose from 'mongoose'

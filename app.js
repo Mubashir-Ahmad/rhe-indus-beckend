@@ -4,7 +4,8 @@ const app =express()
 import productroute from './routes/productroute.js'
 import userroute from './routes/userroute.js'
 import orderroute from './routes/orderroute.js'
-const DATABASE_URL="mongodb+srv://mubbashirahmad:ahmad1122@the-indus.d06tuep.mongodb.net/the-indus?retryWrites=true&w=majority";
+const DATABASE_URL="mongodb+srv://mubashirahmad:ahmad1122@the-indus.vdcrrhs.mongodb.net/the-indus?retryWrites=true&w=majority";
+
 import connectDb from './db/connection.js';
 import {errormiddle} from './middleware/error.js'
 import cloudinary from 'cloudinary'
