@@ -26,6 +26,10 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(fileUpload())
 app.set('view engine' , 'ejs');
    
+// Route for the root endpoint '/'
+app.get('/', (req, res) => {
+  res.send('Hello, this is the root endpoint!');
+});
 
 app.use('/api/v1',productroute)
 app.use('/api/v1',userroute)
