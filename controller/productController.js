@@ -149,7 +149,7 @@ class productController {
 
   static getallproduct = async (req, res, next) => {
     try {
-      res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus-beckend.vercel.app");
       const resultperpage = 6;
      
       const apifeacture = new ApiFeacture(
@@ -235,7 +235,7 @@ const categories = Object.entries(groupedProducts).map(
 
   static getProductsByCategory = async (req, res, next) => {
     try {
-      res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus-beckend.vercel.app");
   
       // Retrieve all products and populate the "category" field with the name
       const products = await productModel
