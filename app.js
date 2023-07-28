@@ -14,11 +14,12 @@ import bodyParser from 'body-parser'
 import fileUpload from 'express-fileupload'
 import paymentroute from './routes/paymentroute.js'
 import categoryroute from './routes/categoryroute.js'
-
+import cors from 'cors'
 dotenv.config({path:"beckend/config/config.env"});
 
 // Increase the request size limit to 10MB
 app.use(express.json({ limit: '10mb' }));
+app.use(cors());
 // dotenv.config({path:'beckend/config/config.env'})
 app.use(cookieParser())
 app.use(express.json())
