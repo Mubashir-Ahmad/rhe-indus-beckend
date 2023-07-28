@@ -190,7 +190,7 @@ class UserController {
   //   }
 
   static loginuser = async (req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://the-indus-beckend.vercel.app");
+    // res.setHeader("Access-Control-Allow-Origin", "https://the-indus-beckend.vercel.app");
     res.setHeader("Access-Control-Allow-Origin", "*");
 
     const { email, password } = req.body;
