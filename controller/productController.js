@@ -235,7 +235,7 @@ const categories = Object.entries(groupedProducts).map(
 
   static getProductsByCategory = async (req, res, next) => {
     try {
-      res.setHeader("Access-Control-Allow-Origin", "https://the-indus-beckend.vercel.app");
+      res.setHeader("Access-Control-Allow-Origin", "*");
   
       // Retrieve all products and populate the "category" field with the name
       const products = await productModel
