@@ -191,6 +191,7 @@ class UserController {
 
   static loginuser = async (req, res, next) => {
     // res.setHeader("Access-Control-Allow-Origin", "https://the-indus-beckend.vercel.app");
+    try{
     res.setHeader("Access-Control-Allow-Origin", "*");
 
     const { email, password } = req.body;
@@ -206,6 +207,10 @@ class UserController {
       return next(new ErrorHandler("Invalid email or password", 401));
     }
     sendtoken(user, 200, res);
+  }
+  catch(err){
+    res.status(400).json.message(err)
+  }
   };
   static logout(req, res, next) {
     try {
