@@ -190,6 +190,7 @@ class UserController {
   //   }
 
   static loginuser = async (req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     const { email, password } = req.body;
     if (!email || !password) {
       return next(new ErrorHandler("Please Enter Email & Password", 400));
