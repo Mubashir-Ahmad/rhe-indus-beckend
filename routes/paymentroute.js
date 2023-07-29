@@ -5,5 +5,5 @@ import {isauthenticated,ISAuthenticated,Isauthenticated,ISAUthenticated }from '.
 
 
 router.post('/payment/process',ISAUthenticated, processpayment)
-router.get('/stripekey',isauthenticated, sendstripkey)
+router.get('/stripekey', sendstripkey)
 export default router
