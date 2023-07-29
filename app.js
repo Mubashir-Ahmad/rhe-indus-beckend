@@ -19,7 +19,16 @@ dotenv.config({path:"beckend/config/config.env"});
 
 // Increase the request size limit to 10MB
 app.use(express.json({ limit: '10mb' }));
-app.use(cors());
+const allowedOrigins = ['https://the-indus.vercel.app']; // Add localhost for development
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+}));
 // dotenv.config({path:'beckend/config/config.env'})
 app.use(cookieParser())
 app.use(express.json())
