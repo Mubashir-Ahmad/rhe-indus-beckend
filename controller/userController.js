@@ -212,8 +212,8 @@ class UserController {
       return next(new ErrorHandler("Invalid email or password", 401));
     }
     console.log('last',user)
-    res.status(200).json({success:true,user:user });
-    // sendtoken(user, 200, res);
+    // res.status(200).json({success:true,user:user });
+    sendtoken(user, 200, res);
   }
   catch (err) {
     res.status(400).json({ message: err.message });
