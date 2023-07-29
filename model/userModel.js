@@ -48,7 +48,7 @@ userSchema.pre("save", async function(next){
 
 // JWT token
 userSchema.methods.getJWTtoken = function(){
-    console.log("helloJWT")
+    console.log("helloJWT",this._id)
     return jwt.sign({id:this._id} , process.env.JWT_SECRET,{
         expiresIn:process.env.JWT_EXPIRE,
     });
