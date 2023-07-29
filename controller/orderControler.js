@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 class orderController {
   static neworder = async (req, res, next) => {
     try{
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       console.log("orderitem");
     const {
       shippingInfo,
@@ -58,6 +59,7 @@ class orderController {
   // }
   static getsingleorder = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       const orders = await orderModel
         .findById(req.params.id)
         .populate("user", "name email");
@@ -86,6 +88,7 @@ class orderController {
 
   static orderpick = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       console.log("qwerty", req.params.id);
       const orderId = req.params.id;
       const riderId = req.user._id; // Assuming the rider ID is provided in the request body
@@ -116,6 +119,7 @@ class orderController {
 
   static calculateRiderEarnings = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       const riderId = req.user._id;
       console.log("rider_id", req.user._id);
       // Retrieve the orders picked by the rider
@@ -140,6 +144,7 @@ class orderController {
 
   static myorder = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       console.log(req.user._id)
       const userId = req.user._id.toString();
       
@@ -159,6 +164,7 @@ class orderController {
  
   static getAllOrders = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       const orders = await orderModel.find();
 
       const userIds = orders.map((order) => order.user);
@@ -221,6 +227,7 @@ class orderController {
 
   static calculateSales = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       console.log('sdsdsd');
       const today = new Date();
       const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -307,6 +314,7 @@ class orderController {
   // update orderstatus
   static updateorderstatus = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       const order = await orderModel.findById(req.params.id);
       if (!order) {
         return next(new ErrorHandler("Order not found"), 404);
@@ -340,6 +348,7 @@ class orderController {
   // delete order ---admin
   static deleteorder = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       const order = await orderModel.findById(req.params.id);
       if (!order) {
         return next(new ErrorHandler("Order not found with this id"), 404);

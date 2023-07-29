@@ -4,6 +4,7 @@ import orderModel from "../model/orderModel.js"
 class categoryController{
     static createCategory = async(req,res,next)=>{
             try{
+                res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
                 console.log(req.body)
             const{category , sorting , active} = req.body
             const doc = new categoryModel({
@@ -22,6 +23,7 @@ class categoryController{
 
     static allCategories = async(req,res,next)=>{
         try{
+            res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
             const category = await categoryModel.find()
             console.log(category)
             res.status(200).json({success:true,category})
@@ -32,6 +34,7 @@ class categoryController{
     }
     static updateCategories = async(req,res,next)=>{
         try{
+            res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
             const { id } = req.params;
             const newUserData={
                 Category_name:req.body.category,
@@ -55,6 +58,7 @@ class categoryController{
     static deleteCategories = async(req,res,next)=>{
             
             try{
+                res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
                 const { id } = req.params;
                 const user = await categoryModel.findById(id);
                 if (!user){

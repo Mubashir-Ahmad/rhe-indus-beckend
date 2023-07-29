@@ -11,6 +11,8 @@ class productController {
   // create product Admin
   static createproduct = async (req, res, next) => {
     try {
+      
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       console.log("category", req.body.category);
       const avatar = req.files.avatar;
       const { name, description, price, active, createdAt, discount_price } =
@@ -83,6 +85,7 @@ class productController {
   // Update product
   static updateproduct = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       const { id } = req.params;
       const {
         name,
@@ -319,7 +322,7 @@ const categories = Object.entries(groupedProducts).map(
   
 
   static getsingleproduct = async (req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
     console.log(req);
     let product = await productModel.findById(req.params.id);
     try {
@@ -375,6 +378,7 @@ const categories = Object.entries(groupedProducts).map(
 
   static deleteproduct = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       const productId = req.params.id;
       const product = await productModel.findById(productId);
       
@@ -401,6 +405,7 @@ const categories = Object.entries(groupedProducts).map(
   };
   
   static getAdminProducts = async (req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
     const products = await productModel.find();
 
     res.status(200).json({

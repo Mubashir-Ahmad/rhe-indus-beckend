@@ -10,6 +10,7 @@ import { MongoClient, GridFSBucket, ObjectId } from "mongodb";
 class UserController {
   static adminuserregister = async (req, res) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       console.log("ressssssss", req.body);
       const mycloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
         folder: "avatars",
@@ -49,6 +50,7 @@ class UserController {
   };
   static adminuserregister = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       const { name, email, password,role } = req.body;
 
       const avatar = req.files.avatar;
@@ -102,6 +104,7 @@ class UserController {
   };
   static userRegister = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       const { name, email, password } = req.body;
 
       // const avatar = req.files.avatar;
@@ -215,6 +218,7 @@ class UserController {
   };
   static logout(req, res, next) {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       res.cookie("token", null, {
         expires: new Date(Date.now()),
         httpOnly: true,
@@ -229,6 +233,7 @@ class UserController {
   // update User Role -- Admin
   static updateUserRole = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       const newUserData = {
         name: req.body.name,
         email: req.body.email,
@@ -250,6 +255,7 @@ class UserController {
   };
 
   static forgetpassword = async (req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
     const user = await userModel.findOne({ email: req.body.email });
     if (!user) {
       return next(new ErrorHandler("User not found", 404));
@@ -281,6 +287,7 @@ class UserController {
   };
   static resetpassword = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       console.log("req", req.body);
       const resetpasswordtoken = crypto
         .createHash("sha256")
@@ -307,6 +314,7 @@ class UserController {
   };
   static getuserdetail = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       const userId = req.user.id;
 
       // Find the user by ID
@@ -361,6 +369,7 @@ class UserController {
   };
   static updatepassword = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       const user = await userModel.findById(req.user.id).select("+password");
       const ispasswordmatched = await user.comparePassword(
         req.body.oldpassword
@@ -380,6 +389,7 @@ class UserController {
   };
   static updateprofile = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       console.log(req.body.avatar)
       const newUserData = {
         name: req.body.name,
@@ -445,6 +455,7 @@ class UserController {
   };
   // Get all user ----(ADMIN)
   static getalluser = async (req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
     const users = await userModel.find();
     res.status(200).json({
       success: true,
@@ -453,6 +464,7 @@ class UserController {
   };
   // Get single user detail ---(admin)
   static getsingleuser = async (req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
     const user = await userModel.findById(req.params.id);
     if (!user) {
       return next(
@@ -467,6 +479,7 @@ class UserController {
   // Update user role
   static updateuserole = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       const newUserData = {
         name: req.body.name,
         email: req.body.email,
@@ -495,6 +508,7 @@ class UserController {
   // Update user role
   static deleteuser = async (req, res, next) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       console.log(req.params.id)
       const user = await userModel.findById(req.params.id);
       if (!user) {
