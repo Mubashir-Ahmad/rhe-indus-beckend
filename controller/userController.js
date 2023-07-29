@@ -210,6 +210,7 @@ class UserController {
     if (!ispasswordmatched) {
       return next(new ErrorHandler("Invalid email or password", 401));
     }
+    console.log('last',user,res)
     sendtoken(user, 200, res);
   }
   catch (err) {
