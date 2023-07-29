@@ -9,10 +9,11 @@ const sendtoken = (user,statusCode,res)=>{
         ),
         HttpOnly:true
     };
+    console.log('tokeen',token)
     res.status(statusCode).cookie("token",token,options).json({
         success:true,
         user,token
     })
-    console.log('tokeen',token)
+   
 }
 export default sendtoken
