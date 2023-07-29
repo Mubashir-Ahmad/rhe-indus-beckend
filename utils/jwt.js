@@ -13,5 +13,6 @@ const sendtoken = (user,statusCode,res)=>{
         success:true,
         user,token
     })
+    console.log('tokeen',token)
 }
 export default sendtoken
