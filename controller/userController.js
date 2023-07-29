@@ -203,6 +203,7 @@ class UserController {
       return next(new ErrorHandler("Please Enter Email & Password", 400));
     }
     const user = await userModel.findOne({ email }).select("+password");
+    console.log('last',user)
     if (!user) {
       return next(new ErrorHandler("Invalid email or password", 401));
     }
@@ -210,7 +211,7 @@ class UserController {
     if (!ispasswordmatched) {
       return next(new ErrorHandler("Invalid email or password", 401));
     }
-    console.log('last',user,res)
+    console.log('last',user)
     res.status(200).json({success:true,user:user });
     // sendtoken(user, 200, res);
   }
