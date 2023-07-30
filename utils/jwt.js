@@ -3,8 +3,9 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 dotenv.config({path:'beckend/config/config.env'})
+
 const sendtoken = (user, statusCode, res) => {
-  console.log('Before calling getJWTtoken');
+  console.log('Before calling getJWTtoken',process.env.JWT_SECRET ,'user_id', user_id);
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE,
   });
