@@ -1,5 +1,5 @@
 // Creating token and send to cookie
-
+import cookie from 'cookie'
 const sendtoken = (user,statusCode,res)=>{
     console.log('Before calling getJWTtoken');
     const token = user.getJWTtoken();
@@ -11,7 +11,12 @@ const sendtoken = (user,statusCode,res)=>{
         ),
         // HttpOnly:true
     };
-    res.setHeader('Set-Cookie', `token=${token}; Expires=${options.expires.toUTCString()}; HttpOnly; Secure; Path=${options.path}`);
+      // Serialize the cookie
+  const serializedCookie = cookie.serialize('token', token, options);
+
+  // Set the cookie in the response header
+  res.setHeader('Set-Cookie', serializedCookie);
+
     res.status(statusCode).cookie("token",token,options).json({
         success:true,
         user,token
