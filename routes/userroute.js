@@ -1,6 +1,6 @@
 import express from 'express';
 import UserController from '../controller/userController.js';
-import { isauthenticated, authorizrRoles, Isauthenticated,ISauthenticated,ISAuthenticated,ISAUthenticated ,x } from '../middleware/auth.js';
+import { isauthenticated, authorizrRoles, Isauthenticated,iSauthenticated,ISauthenticated,ISAuthenticated,ISAUthenticated ,x } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -28,7 +28,7 @@ router.post('/password/forget', UserController.forgetpassword);
 router.put('/password/reset/:token', UserController.resetpassword);
 
 // Get user detail
-router.get('/me', isauthenticated,  UserController.getuserdetail);
+router.get('/me', iSauthenticated,  UserController.getuserdetail);
 
 // User update password
 router.put('/password/update', Isauthenticated, UserController.updatepassword);

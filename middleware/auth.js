@@ -1,10 +1,27 @@
 import Errorhandler from '../utils/errorhandler.js'
 import jwt from 'jsonwebtoken'
 import userModel from '../model/userModel.js'
-
-const isauthenticated = async(req,res,next)=>{
+const iSauthenticated = async(req,res,next)=>{
     try{
         console.log('rrra',req.headers.authorization)
+        const token = req.rawHeaders[13];
+        // console.log('tok',token)
+        if(!token){
+            return next(new Errorhandler("please login to access this resourcce",401))
+        }
+        const codedecode = jwt.verify(token,process.env.JWT_SECRET);
+        console.log('codee',codedecode)
+        req.user = await userModel.findById(codedecode.id);
+       req.userModel = await userModel.findById(codedecode.id);
+       next()
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+const isauthenticated = async(req,res,next)=>{
+    try{
+        console.log('rrra',req.rawHeaders[13])
         const token = req.rawHeaders[13];
         // console.log('tok',token)
         if(!token){
@@ -104,4 +121,4 @@ const authorizrRoles = (...roles)=>{
     }
 }
 const x=10;
-export { isauthenticated, ISAUthenticated,authorizrRoles,Isauthenticated,ISauthenticated ,ISAuthenticated,x}
+export { isauthenticated, iSauthenticated,ISAUthenticated,authorizrRoles,Isauthenticated,ISauthenticated ,ISAuthenticated,x}
