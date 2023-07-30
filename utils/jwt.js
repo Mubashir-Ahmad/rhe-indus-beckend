@@ -1,9 +1,13 @@
 // Creating token and send to cookie
 import cookie from 'cookie'
+import jwt from 'jsonwebtoken'
 const sendtoken = (user,statusCode,res)=>{
     console.log('Before calling getJWTtoken');
-    const token = user.getJWTtoken();
-    // option cookie
+    const token = 
+    jwt.sign({id:this._id} , process.env.JWT_SECRET,{
+        expiresIn:process.env.JWT_EXPIRE,
+    });
+
     console.log('tokeen',token)
     const options={
         expires: new Date(
