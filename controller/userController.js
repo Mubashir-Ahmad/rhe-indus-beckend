@@ -317,7 +317,7 @@ class UserController {
   };
   static getuserdetail = async (req, res, next) => {
     try {
-      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
+      res.setHeader("Access-Control-Allow-Origin", "*");
       const userId = req.user.id;
 
       // Find the user by ID
