@@ -4,7 +4,7 @@ import userModel from '../model/userModel.js'
 
 const isauthenticated = async(req,res,next)=>{
     try{
-        console.log('rrra',req)
+        console.log('rrra',req.headers.authorization)
         const token = req.rawHeaders[13];
         // console.log('tok',token)
         if(!token){
