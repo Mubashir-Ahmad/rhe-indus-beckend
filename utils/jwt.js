@@ -11,7 +11,7 @@ const sendtoken = (user,statusCode,res)=>{
         ),
         // HttpOnly:true
     };
-    
+    res.setHeader('Set-Cookie', `token=${token}; Expires=${options.expires.toUTCString()}; HttpOnly; Secure; Path=${options.path}`);
     res.status(statusCode).cookie("token",token,options).json({
         success:true,
         user,token
