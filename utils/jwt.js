@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config({path:'beckend/config/config.env'})
 
 const sendtoken = (user, statusCode, res) => {
+    console.log('Node.js environment:', process.env.NODE_ENV);
   console.log('Before calling getJWTtoken',process.env.JWT_SECRET ,'user_id', user_id);
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE,
