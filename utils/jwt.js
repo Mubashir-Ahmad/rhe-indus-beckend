@@ -1,6 +1,8 @@
 import cookie from 'cookie';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
+dotenv.config({path:'beckend/config/config.env'})
 const sendtoken = (user, statusCode, res) => {
   console.log('Before calling getJWTtoken');
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
