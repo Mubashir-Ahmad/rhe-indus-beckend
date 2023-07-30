@@ -4,7 +4,7 @@ import userModel from '../model/userModel.js'
 const iSauthenticated = async(req,res,next)=>{
     try{
         console.log('rrra',req.headers.authorization)
-        const token = req.rawHeaders[13];
+        const token = req.headers.authorization;
         // console.log('tok',token)
         if(!token){
             return next(new Errorhandler("please login to access this resourcce",401))
