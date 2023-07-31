@@ -15,48 +15,52 @@ import fileUpload from 'express-fileupload'
 import paymentroute from './routes/paymentroute.js'
 import categoryroute from './routes/categoryroute.js'
 import cors from 'cors'
-dotenv.config({path:"beckend/config/config.env"});
+dotenv.config({ path: "beckend/config/config.env" });
+
 
 // Increase the request size limit to 10MB
 app.use(express.json({ limit: '10mb' }));
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
-// dotenv.config({path:'beckend/config/config.env'})
-app.use(cookieParser())
-app.use(express.json())
-app.use(bodyParser.urlencoded({extended:true}))
-app.use(fileUpload())
-app.set('view engine' , 'ejs');
-   
+
+// CORS middleware
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+}));
+
+// More middleware and route handlers
+app.use(cookieParser());
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload());
+app.set('view engine', 'ejs');
+
 // Route for the root endpoint '/'
 app.get('/', (req, res) => {
   res.send('Hello, this is the root endpoint!');
 });
 
-app.use('/api/v1',productroute)
-app.use('/api/v1',userroute)
-app.use('/api/v1',orderroute)
-app.use('/api/v1',paymentroute)
-app.use('/api/v1',categoryroute)
+// Routes
+app.use('/api/v1', productroute);
+app.use('/api/v1', userroute);
+app.use('/api/v1', orderroute);
+app.use('/api/v1', paymentroute);
+app.use('/api/v1', categoryroute);
 
-// Database connection 
-connectDb(DATABASE_URL)
-app.use(errormiddle)
+// Database connection
+connectDb(DATABASE_URL);
+app.use(errormiddle);
 
-
-
+// Cloudinary configuration
 cloudinary.config({
-    cloud_name:process.env.CLOUDINARY_NAME,
-    api_key:process.env.CLOUDINARY_API_KEY,
-    api_secret:process.env.CLOUDINARY_API_SECRET
-  })
-app.listen(process.env.PORT,()=>{
-    console.log(`server running at ${process.env.PORT}`)
-    console.log(`Mongodb server running at ${DATABASE_URL}`)
-})
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
+// Start the server
+app.listen(process.env.PORT, () => {
+  console.log(`Server running at ${process.env.PORT}`);
+  console.log(`MongoDB server running at ${DATABASE_URL}`);
+});
