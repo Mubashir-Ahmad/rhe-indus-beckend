@@ -21,7 +21,7 @@ const processpayment = catchAsyncError(async (req, res, next) => {
 });
 
 const sendstripkey = catchAsyncError(async (req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
   console.log('Before calling getJWTtoken',process.env.JWT_SECRET);
   console.log("hello")
     res.status(200).json({sendstripkey:process.env.STRIPE_API_KEY});
