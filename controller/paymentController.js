@@ -21,6 +21,7 @@ const processpayment = catchAsyncError(async (req, res, next) => {
 });
 
 const sendstripkey = catchAsyncError(async (req, res, next) => {
+  console.log('sendstripkey function called');
   console.log('Before calling getJWTtoken',process.env.JWT_SECRET);
   res.setHeader("Access-Control-Allow-Origin", "*");
   console.log('Before calling getJWTtoken',process.env.JWT_SECRET);
