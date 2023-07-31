@@ -319,44 +319,60 @@ class UserController {
     try {
       res.setHeader("Access-Control-Allow-Origin", "*");
       const userId = req.user.id;
-
+  
       // Find the user by ID
       const user = await userModel.findById(userId);
-
+  
       if (!user) {
         return res
           .status(404)
           .json({ success: false, message: "User not found" });
       }
-
+  
+      // Check if the user has an avatar image
+      if (!user.avatar) {
+        // If the user does not have an avatar, send the user details without the avatar URL
+        return res
+          .status(200)
+          .json({ success: true, user: user._doc });
+      }
+  
       // Retrieve the avatar file from GridFS
       const uri = DATABASE_URL;
       const client = new MongoClient(uri, { useUnifiedTopology: true });
-
+  
       await client.connect();
       const database = client.db("TheIndus");
       const bucket = new GridFSBucket(database);
-      // console.log(user)
+  
+      // Check if the user avatar URL is a valid ObjectId
       const fileId = new ObjectId(user.avatar.split("/").pop());
+      if (!fileId) {
+        // If the fileId is not valid, send the user details without the avatar URL
+        return res
+          .status(200)
+          .json({ success: true, user: user._doc });
+      }
+  
       const downloadStream = bucket.openDownloadStream(fileId);
-
+  
       // Create a buffer to store the image data
       let imageBuffer = Buffer.from([]);
-
+  
       downloadStream.on("data", (chunk) => {
         imageBuffer = Buffer.concat([imageBuffer, chunk]);
       });
-
+  
       downloadStream.on("end", () => {
         const avatarData = imageBuffer.toString("base64");
         const avatarUrl = `data:image/jpeg;base64,${avatarData}`;
-
+  
         // Send the user details and avatar URL in the response
         res
           .status(200)
           .json({ success: true, user: { ...user._doc, avatar: avatarUrl } });
       });
-
+  
       downloadStream.on("error", (error) => {
         console.log("Error:", error);
         res
@@ -370,6 +386,7 @@ class UserController {
         .json({ success: false, message: "Internal Server Error" });
     }
   };
+  
   static updatepassword = async (req, res, next) => {
     try {
       res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
