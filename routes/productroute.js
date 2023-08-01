@@ -1,7 +1,7 @@
 import express from 'express'
 import productController from '../controller/productController.js'
 const router = express.Router()
-import { isauthenticated, authorizrRoles,ISAUthenticated, Isauthenticated,ISauthenticated,ISAuthenticated, x } from '../middleware/auth.js';
+import { isauthenticated, authorizrRoles,ISAUthenticated, iSauthenticated,Isauthenticated,ISauthenticated,ISAuthenticated, x } from '../middleware/auth.js';
 // Get All products
 router.get('/product',productController.getallproduct)
 
@@ -12,7 +12,7 @@ router.get('/product/:id',productController.getsingleproduct)
 // Update product
 router.put('/update/product/:id',ISAUthenticated,productController.updateproduct)
 // create product Admin
-router.post('/admin/product/new',isauthenticated,productController.createproduct)
+router.post('/admin/product/new',iSauthenticated,productController.createproduct)
 
 // Delete product
 router.delete('/admin/product/:id',productController.deleteproduct)
