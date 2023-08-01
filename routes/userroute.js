@@ -34,7 +34,7 @@ router.get('/me', iSauthenticated,  UserController.getuserdetail);
 router.put('/password/update', Isauthenticated, UserController.updatepassword);
 
 // User profile update
-router.put('/me/update', isauthenticated, UserController.updateprofile);
+router.put('/me/update', iSauthenticated, UserController.updateprofile);
 
 // Get all user detail -- Admin
 router.get('/admin/user', UserController.getalluser);
