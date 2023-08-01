@@ -12,7 +12,7 @@ class productController {
   static createproduct = async (req, res, next) => {
     try {
       
-      res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
+      res.setHeader("Access-Control-Allow-Origin", "*");
       console.log("category", req.body.category);
       const avatar = req.files.avatar;
       const { name, description, price, active, createdAt, discount_price } =
