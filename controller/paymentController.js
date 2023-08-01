@@ -21,14 +21,24 @@ const processpayment = catchAsyncError(async (req, res, next) => {
 });
 
 const sendstripkey = catchAsyncError(async (req, res, next) => {
-  console.log('sendstripkey function called');
-  console.log('Before calling getJWTtoken',process.env.JWT_SECRET);
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  console.log('Before calling getJWTtoken',process.env.JWT_SECRET);
-  console.log("hello")
-    res.status(200).json({sendstripkey:process.env.STRIPE_API_KEY});
+  if (req.method === 'OPTIONS') {
+    // Respond to the preflight request
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.status(200).end(); // End the OPTIONS request here
+  } else {
+    // Handle the actual request as before
+    console.log('sendstripkey function called');
+    console.log('Before calling getJWTtoken', process.env.JWT_SECRET);
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    console.log('Before calling getJWTtoken', process.env.JWT_SECRET);
+    console.log('hello');
+    res.status(200).json({ sendstripkey: process.env.STRIPE_API_KEY });
+  }
 });
 
 export{processpayment , sendstripkey};
