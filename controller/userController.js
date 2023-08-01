@@ -410,7 +410,7 @@ class UserController {
   static updateprofile = async (req, res, next) => {
     try {
       res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
-      console.log('avatar',req)
+      console.log('avatar',req.file.avatar)
       const newUserData = {
         name: req.body.name,
         email: req.body.email,
@@ -425,7 +425,7 @@ class UserController {
   
         await client.connect();
   
-        const database = client.db("TheIndus");
+        const database = client.db("the-indus");
         const bucket = new GridFSBucket(database);
   
         const imageBuffer = Buffer.from(avatar.data, 'base64');
