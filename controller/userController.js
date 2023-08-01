@@ -410,7 +410,7 @@ class UserController {
   static updateprofile = async (req, res, next) => {
     try {
       res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
-      console.log(req.body.avatar)
+      console.log('avatar',req.body.avatar)
       const newUserData = {
         name: req.body.name,
         email: req.body.email,
