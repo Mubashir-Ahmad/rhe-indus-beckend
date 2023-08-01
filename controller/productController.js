@@ -152,7 +152,7 @@ class productController {
 
   static getallproduct = async (req, res, next) => {
     try {
-      res.setHeader("Access-Control-Allow-Origin", "https://the-indus-beckend.vercel.app");
+      res.setHeader("Access-Control-Allow-Origin", "*");
       const resultperpage = 6;
      
       const apifeacture = new ApiFeacture(
