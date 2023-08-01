@@ -9,7 +9,7 @@ const stripe = stripePackage(process.env.SRTIPE_SECRET_KEY);
 // console.log(process.env.SRTIPE_SECRET_KEY);
 
 const processpayment = catchAsyncError(async (req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
+  res.setHeader("Access-Control-Allow-Origin", "https://the-indus-beckend.vercel.app");
   const mypayment = await stripe.paymentIntents.create({
     amount: req.body.amount,
     currency: 'inr',
