@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import userModel from '../model/userModel.js'
 const iSauthenticated = async(req,res,next)=>{
     try{
-        console.log('rrra',req.headers.authorization)
+        // console.log('rrra',req.headers.authorization)
         const token = req.headers.authorization;
         // console.log('tok',token)
         if(!token){
