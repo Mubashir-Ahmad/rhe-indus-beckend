@@ -1,10 +1,10 @@
 import express from 'express'
 const router = express.Router()
 import orderController from '../controller/orderControler.js'
-import {isauthenticated,authorizrRoles,ISAuthenticated,ISAUthenticated ,ISauthenticated ,Isauthenticated}from '../middleware/auth.js'
+import {isauthenticated,authorizrRoles,ISAuthenticated,iSauthenticated,ISAUthenticated ,ISauthenticated ,Isauthenticated}from '../middleware/auth.js'
 import orderModel from '../model/orderModel.js'
 // Order create
-router.post('/order/new',ISAUthenticated,orderController.neworder)
+router.post('/order/new',iSauthenticated,orderController.neworder)
 
 // Get single order
 router.get('/order/:id',orderController.getsingleorder)
