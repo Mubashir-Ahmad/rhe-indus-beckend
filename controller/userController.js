@@ -220,6 +220,7 @@ class UserController {
   }
   };
   static logout(req, res, next) {
+    console.log('logout--function called')
     try {
       res.setHeader("Access-Control-Allow-Origin", "https://the-indus.vercel.app");
       res.cookie("token", null, {
